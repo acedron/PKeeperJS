@@ -1,6 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const readline = require('readline');
 
+var variables = {
+  currentUser: ''
+};
+
 var win;
 
 const createWindow = () => {
@@ -50,5 +54,11 @@ ipcMain.on('resizeWindow', (e, width, height) => {
   win.center();
   win.setResizable(false);
 });
+
+ipcMain.on('setVar', (e, name, value) => {
+  variables[name] = value;
+});
+
+ipcMain.on('getVar', (e, name) => e.sender.send('var-reply', variables[name]));
 
 ipcMain.on('quitApp', e => app.quit());

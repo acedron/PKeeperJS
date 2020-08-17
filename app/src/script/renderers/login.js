@@ -29,7 +29,9 @@ const login = () => {
             if (username == users.name) {
               crypter.decrypt(users.pass, 'p3s6v9y$B&E(H+Mb', pass => {
                 if (password == pass) {
-                  //LOGIN
+                  ipcRenderer.send('setVar', 'currentUser', users.name);
+                  ipcRenderer.send('resizeWindow', 400, 500);
+                  ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
                 } else {
                   ipcRenderer.send('resizeWindow', 400, 225);
                   document.getElementById('logincallback').textContent = 'Password doesn\'t match!';
@@ -52,7 +54,9 @@ const login = () => {
             if (found == true) {
               crypter.decrypt(user.pass, 'p3s6v9y$B&E(H+Mb', pass => {
                 if (password == pass) {
-                  //LOGIN
+                  ipcRenderer.send('setVar', 'currentUser', user.name);
+                  ipcRenderer.send('resizeWindow', 400, 500);
+                  ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
                 } else {
                   ipcRenderer.send('resizeWindow', 400, 225);
                   document.getElementById('logincallback').textContent = 'Password doesn\'t match!';

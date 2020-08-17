@@ -45,7 +45,9 @@ const create = () => {
                     document.getElementById('registercallback').textContent = 'Couldn\'t create user!';
                   }
                   else {
-                    //CREATED USER
+                    ipcRenderer.send('setVar', 'currentUser', username);
+                    ipcRenderer.send('resizeWindow', 400, 500);
+                    ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
                   }
                 });
               });
@@ -77,7 +79,9 @@ const create = () => {
                     document.getElementById('registercallback').textContent = 'Couldn\'t create user!';
                   }
                   else {
-                    //CREATED USER
+                    ipcRenderer.send('setVar', 'currentUser', username);
+                    ipcRenderer.send('resizeWindow', 400, 500);
+                    ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
                   }
                 });
               });
@@ -100,7 +104,9 @@ const create = () => {
               document.getElementById('registercallback').textContent = 'Couldn\'t create users file!';
             }
             else {
-              //CREATED USER
+              ipcRenderer.send('setVar', 'currentUser', username);
+              ipcRenderer.send('resizeWindow', 400, 500);
+              ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
             }
           });
         });
