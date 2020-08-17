@@ -1,0 +1,79 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Bold'),
+       local('OpenSans-Bold'),
+       url('../../assets/fonts/OpenSans/OpenSans-Bold.ttf') format('ttf');
+}
+
+html, body, div.wrap {
+  height: 100%;
+}
+
+div.wrap, body {
+  overflow: hidden;
+}
+
+body {
+  background-color: #28353b;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+button {
+  box-shadow: 0px 1px 0px 0px #1e292e;
+	background-color: #222d32;
+	border-radius: 28px;
+	border: 1px solid #f3f3f3;
+	display: inline-block;
+	color: #f3f3f3;
+	font-size: 17px;
+	padding: 13px 31px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #1e292e;
+  outline: none;
+  transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  align-self: flex-end;
+  height: 45px;
+}
+
+button:hover {
+  background-color: #f3f3f3;
+  border: 2px solid #1e292e;
+  color: #1e292e;
+}
+
+.logininput {
+  background-color: #222d32;
+  color: #f3f3f3;
+  box-shadow: 0px 1px 0px 0px #1e292e;
+	border-radius: 28px;
+	border: 1px solid #f3f3f3;
+	display: inline-block;
+	font-size: 17px;
+  padding: 8px 8px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #1e292e;
+  outline: none;
+  top: 5vh;
+  width: 30%;
+  transition: width 0.4s ease-in-out, border 0.2s ease-in-out;
+}
+
+.logininput:focus {
+  border: 2px solid #f3f3f3;
+  width: 50%;
+}

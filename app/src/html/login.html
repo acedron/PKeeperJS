@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>PKeeper JS - Login</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <script type="text/javascript" src="../script/renderers/cRenderer.js"></script>
+    <script type="text/javascript" src="../script/renderers/login.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <input name="username" type="text" maxlength="256" id="loginuname" class="logininput" placeholder="Username*" />
+      <br>
+      <input name="password" type="password" maxlength="256" id="loginpass" class="logininput" placeholder="Password*" />
+      <br> <br>
+      <button onclick="login()" id="loginbutton">Login</button>
+      <button onclick="cancel()" id="cancelbutton">Cancel</button>
+      <br>
+      <p style="color: #f3f3f3;" id="logincallback"></p>
+    </div>
+  </body>
+</html>

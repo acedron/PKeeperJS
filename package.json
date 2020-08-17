@@ -1,0 +1,55 @@
+{
+  "name": "passwordkeeperjs",
+  "version": "1.0.0",
+  "description": "Holds passwords with AES Encryption",
+  "main": "app/src/script/main.js",
+  "scripts": {
+    "test": "node app/src/script/test.js",
+    "start": "npm install && electron .",
+    "forcestart": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder -mwl --dir --x64",
+    "pack32": "electron-builder -mwl --dir --ia32",
+    "dist": "electron-builder -mwl --x64",
+    "dist32": "electron-builder -mwl --ia32"
+  },
+  "build": {
+    "appId": "io.github.acedron.passwordkeeperjs",
+    "mac": {
+      "category": "public.app-category.games"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    },
+    "win": {
+      "target": "NSIS"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acedron/PasswordKeeperJS.git"
+  },
+  "keywords": [
+    "password",
+    "js",
+    "aes",
+    "keeper"
+  ],
+  "author": "acedron <acedrons@yahoo.co.jp>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/acedron/PasswordKeeperJS/issues"
+  },
+  "homepage": "https://github.com/acedron/PasswordKeeperJS#readme",
+  "devDependencies": {
+    "electron": "^9.2.0",
+    "electron-builder": "^22.8.0"
+  },
+  "dependencies": {
+    "custom-electron-titlebar": "^3.2.4",
+    "jsontoxml": "^1.0.1",
+    "xml2json-light": "^1.0.6"
+  }
+}
