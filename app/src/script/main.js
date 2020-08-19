@@ -2,7 +2,9 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const readline = require('readline');
 
 var variables = {
-  currentUser: ''
+  currentUser: '',
+  currentCategory: '',
+  currentPassword: ''
 };
 
 var win;
@@ -60,5 +62,11 @@ ipcMain.on('setVar', (e, name, value) => {
 });
 
 ipcMain.on('getVar', (e, name) => e.sender.send('var-reply', variables[name]));
+
+ipcMain.on('getVars', (e, ...args) => {
+  var ret = [];
+  for (var i = 0; i < args.length; i++) ret.push(variables[args[i]]);
+  e.sender.send('var-reply', ret);
+});
 
 ipcMain.on('quitApp', e => app.quit());

@@ -45,9 +45,14 @@ const create = () => {
                     document.getElementById('registercallback').textContent = 'Couldn\'t create user!';
                   }
                   else {
-                    ipcRenderer.send('setVar', 'currentUser', username);
-                    ipcRenderer.send('resizeWindow', 400, 500);
-                    ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
+                    fs.mkdirSync(`${maindir}/passwords/`, { recursive: true });
+                    fs.writeFile(`${maindir}/passwords/${username}.xml`, jsonxml({
+                      xml: []
+                    }), err => {
+                      ipcRenderer.send('setVar', 'currentUser', username);
+                      ipcRenderer.send('resizeWindow', 400, 500);
+                      ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
+                    });
                   }
                 });
               });
@@ -66,9 +71,7 @@ const create = () => {
             if (valid == true) {
               crypter.encrypt(password, 'p3s6v9y$B&E(H+Mb', pass => {
                 var nusers = [];
-                for (var i = 0; i < users.length; i++) {
-                  nusers.push({name: "user", attrs: users[i]});
-                }
+                for (var i = 0; i < users.length; i++) nusers.push({name: "user", attrs: users[i]});
                 nusers.push({name: "user", attrs: { name: username, pass: pass} });
                 fs.writeFile(`${maindir}/users.xml`, jsonxml({
                   users: nusers
@@ -79,9 +82,14 @@ const create = () => {
                     document.getElementById('registercallback').textContent = 'Couldn\'t create user!';
                   }
                   else {
-                    ipcRenderer.send('setVar', 'currentUser', username);
-                    ipcRenderer.send('resizeWindow', 400, 500);
-                    ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
+                    fs.mkdirSync(`${maindir}/passwords/`, { recursive: true });
+                    fs.writeFile(`${maindir}/passwords/${username}.xml`, jsonxml({
+                      xml: []
+                    }), err => {
+                      ipcRenderer.send('setVar', 'currentUser', username);
+                      ipcRenderer.send('resizeWindow', 400, 500);
+                      ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
+                    });
                   }
                 });
               });
@@ -104,9 +112,14 @@ const create = () => {
               document.getElementById('registercallback').textContent = 'Couldn\'t create users file!';
             }
             else {
-              ipcRenderer.send('setVar', 'currentUser', username);
-              ipcRenderer.send('resizeWindow', 400, 500);
-              ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
+              fs.mkdirSync(`${maindir}/passwords/`, { recursive: true });
+              fs.writeFile(`${maindir}/passwords/${username}.xml`, jsonxml({
+                xml: []
+              }), err => {
+                ipcRenderer.send('setVar', 'currentUser', username);
+                ipcRenderer.send('resizeWindow', 400, 500);
+                ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
+              });
             }
           });
         });

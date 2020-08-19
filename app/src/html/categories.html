@@ -10,8 +10,11 @@
   </head>
   <body>
     <div class="wrap">
-
-      <footer style="color: #f3f3f3;" id="logg">
+      <div id="categories" class="categories" class="unselectable"></div>
+      <footer style="left: 21vh; bottom: 10vh; overflow: hidden;" id="categoryadd" class="unselectable">
+        <button onclick="createCategory()">Create Category</button>
+      </footer>
+      <footer style="color: #f3f3f3;" id="logg" class="unselectable">
         Logged in as . <button onclick="logout()" id="logoutbutton">Logout</button>
       </footer>
     </div>
