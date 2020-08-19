@@ -7,13 +7,7 @@ const crypto = require('crypto');
 const crypter = require('../script/modules/crypter.js');
 const clipboardy = require('clipboardy');
 
-var maindir;
-
-if (process.platform === 'win32') {
-  maindir = `${process.env.APPDATA}/pkeeperjs`;
-} else {
-  maindir = `${process.env.HOME}/.pkeeperjs`;
-}
+var maindir = ((process.platform === 'win32') ? `${process.env.APPDATA}/pkeeperjs` : `${process.env.HOME}/.pkeeperjs`);
 fs.mkdirSync(maindir, { recursive: true });
 
 var cate = '';

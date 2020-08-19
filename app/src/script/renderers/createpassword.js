@@ -5,8 +5,6 @@ const jsonxml = require('jsontoxml');
 const crypto = require('crypto');
 const crypter = require('../script/modules/crypter.js');
 
-var maindir;
-
 var uname;
 var cate;
 
@@ -18,11 +16,7 @@ document.addEventListener('DOMContentLoaded', event => {
   });
 });
 
-if (process.platform === 'win32') {
-  maindir = `${process.env.APPDATA}/pkeeperjs`;
-} else {
-  maindir = `${process.env.HOME}/.pkeeperjs`;
-}
+var maindir = ((process.platform === 'win32') ? `${process.env.APPDATA}/pkeeperjs` : `${process.env.HOME}/.pkeeperjs`);
 fs.mkdirSync(maindir, { recursive: true });
 
 const errcall = msg => {
@@ -42,9 +36,8 @@ const create = () => {
       var jsonoutus = parser.xml2json(dataus);
       var users = jsonoutus['users']['user'];
       var enpass = '';
-      if (users.length == undefined) {
-        enpass = users.pass;
-      } else {
+      if (users.length == undefined) enpass = users.pass;
+      else {
         for (var i = 0; i < users.length; i++) {
           if (users[i].name == uname) {
             enpass = users[i].pass;
@@ -113,17 +106,15 @@ const create = () => {
             passwords.push({
               name: "password", attrs: { name: passname, pass: encrypted }
             });
-            if (categories.length == undefined) {
-              ncate.push({
-                name: "category", attrs: { name: categories.name }, children: passwords
-              });
-            } else {
+            if (categories.length == undefined) ncate.push({
+              name: "category", attrs: { name: categories.name }, children: passwords
+            });
+            else {
               for (var i = 0; i < categories.length; i++) {
-                if (categories[i].name == cate) {
-                  ncate.push({
-                    name: "category", attrs: { name: categories[i].name }, children: passwords
-                  });
-                } else {
+                if (categories[i].name == cate) ncate.push({
+                  name: "category", attrs: { name: categories[i].name }, children: passwords
+                });
+                else {
                   var plar = [];
                   try {
                     var passes = categories[i]['password'];

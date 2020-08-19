@@ -4,13 +4,7 @@ const parser = require('xml2json-light');
 const jsonxml = require('jsontoxml');
 const crypter = require('../script/modules/crypter.js');
 
-var maindir;
-
-if (process.platform === 'win32') {
-  maindir = `${process.env.APPDATA}/pkeeperjs`;
-} else {
-  maindir = `${process.env.HOME}/.pkeeperjs`;
-}
+var maindir = ((process.platform === 'win32') ? `${process.env.APPDATA}/pkeeperjs` : `${process.env.HOME}/.pkeeperjs`);
 fs.mkdirSync(maindir, { recursive: true });
 
 const errcall = msg => {
@@ -31,9 +25,7 @@ const deleteuser = () => {
         var jsonout = parser.xml2json(data);
         var users = jsonout["users"]["user"];
         var user;
-        if (users.length == undefined) {
-          if (users.name == username) user = users;
-        }
+        if (users.length == undefined && users.name == username) user = users;
         else {
           for (var i = 0; i < users.length; i++) {
             if (users[i].name == username) user = users[i];
