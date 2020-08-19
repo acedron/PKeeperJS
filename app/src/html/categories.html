@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>PKeeper JS - Categories</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <script type="text/javascript" src="../script/renderers/cRenderer.js"></script>
+    <script type="text/javascript" src="../script/renderers/categories.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div id="categories" class="categories" class="unselectable"></div>
+      <footer style="left: 21vh; bottom: 10vh; overflow: hidden;" id="categoryadd" class="unselectable">
+        <button onclick="createCategory()">Create Category</button>
+      </footer>
+      <footer style="color: #f3f3f3;" id="logg" class="unselectable">
+        Logged in as . <button onclick="logout()" id="logoutbutton">Logout</button>
+      </footer>
+    </div>
+  </body>
+</html>
