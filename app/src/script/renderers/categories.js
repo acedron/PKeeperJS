@@ -50,6 +50,6 @@ const category = categoryn => {
 
 const logout = () => {
   ipcRenderer.send('setVar', 'currentUser', '');
-  ipcRenderer.send('resizeWindow', 275, 90);
+  ipcRenderer.send('resizeWindow', 435, 90);
   ipcRenderer.send('changeHtml', `${__dirname}/splash.html`);
 };
