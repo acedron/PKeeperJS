@@ -98,7 +98,6 @@ button:hover {
   transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   align-self: flex-end;
   height: 20px;
-  width: 75%;
 }
 
 .categorybutton {

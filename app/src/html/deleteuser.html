@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>PKeeper JS - Delete User</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <script type="text/javascript" src="../script/renderers/cRenderer.js"></script>
+    <script type="text/javascript" src="../script/renderers/deleteuser.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <input name="username" type="text" maxlength="256" id="deleteuname" class="logininput" placeholder="Username*" />
+      <br>
+      <input name="password" type="password" maxlength="256" id="deletepass" class="logininput" placeholder="Password*" />
+      <input name="passwordre" type="password" maxlength="256" id="deletepassre" class="logininput" placeholder="Password Again*" />
+      <br> <br>
+      <button onclick="deleteuser()" id="deletebutton">Delete</button>
+      <button onclick="cancel()" id="cancelbutton">Cancel</button>
+      <br>
+      <p style="color: #f3f3f3;" id="deletecallback"></p>
+    </div>
+  </body>
+</html>

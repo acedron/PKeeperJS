@@ -4,13 +4,7 @@ const parser = require('xml2json-light');
 const jsonxml = require('jsontoxml');
 const customTitlebar = require('custom-electron-titlebar');
 
-var maindir;
-
-if (process.platform === 'win32') {
-  maindir = `${process.env.APPDATA}/pkeeperjs`;
-} else {
-  maindir = `${process.env.HOME}/.pkeeperjs`;
-}
+var maindir = ((process.platform === 'win32') ? `${process.env.APPDATA}/pkeeperjs` : `${process.env.HOME}/.pkeeperjs`);
 fs.mkdirSync(maindir, { recursive: true });
 
 var cate = '';
@@ -53,13 +47,12 @@ document.addEventListener('DOMContentLoaded', event => {
           }
         }
       }
-      if (passwords.length <= 0) {
-        document.getElementById('passwords').innerHTML = '<p style="color: #f3f3f3;"> No password found!</p>';
-      } else {
-        var t = '';
+      var t = '';
+      if (passwords.length <= 0) t += '<p style="color: #f3f3f3;"> No password found!</p>';
+      else {
         for (var i = 0; i < passwords.length; i++) t += `<input type="button" value="${passwords[i]}" class="categorybutton" id="${passwords[i]}" onclick="password(this.id)">`;
-        document.getElementById('passwords').innerHTML = t;
       }
+      document.getElementById('passwords').innerHTML = t;
     });
   });
 });
@@ -80,31 +73,27 @@ const deleteCategory = () => {
   fs.readFile(`${maindir}/passwords/${uname}.xml`, 'utf8', (err, data) => {
     var jsonout = parser.xml2json(data);
     var categories = jsonout['xml']['category'];
-    if (categories.length == undefined) {
-      fs.writeFile(`${maindir}/passwords/${uname}.xml`, jsonxml({
-        xml: []
-      }), err => {
-        ipcRenderer.send('setVar', 'currentCategory', '');
-        ipcRenderer.send('resizeWindow', 400, 500);
-        ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
-      });
-    } else {
+    if (categories.length == undefined) fs.writeFile(`${maindir}/passwords/${uname}.xml`, jsonxml({
+      xml: []
+    }), err => {
+      ipcRenderer.send('setVar', 'currentCategory', '');
+      ipcRenderer.send('resizeWindow', 400, 500);
+      ipcRenderer.send('changeHtml', `${__dirname}/categories.html`);
+    });
+    else {
       var ncate = [];
       for (var i = 0; i < categories.length; i++) {
         if (categories[i].name != cate) {
           try {
             var passes = categories[i]["password"];
             var passarr = [];
-            if (passes.length == undefined) {
-              passarr.push({
-                name: "password", attrs: { name: passes.name, pass: passes.pass }
+            if (passes.length == undefined) passarr.push({
+              name: "password", attrs: { name: passes.name, pass: passes.pass }
+            });
+            else {
+              for (var j = 0; j < passes.length; j++) passarr.push({
+                name: "password", attrs: { name: passes[j].name, pass: passes[j].pass }
               });
-            } else {
-              for (var j = 0; j < passes.length; j++) {
-                passarr.push({
-                  name: "password", attrs: { name: passes[j].name, pass: passes[j].pass }
-                });
-              }
             }
             ncate.push({
               name: "category", attrs: { name: categories[i].name }, children: passarr

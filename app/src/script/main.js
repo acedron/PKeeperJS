@@ -11,7 +11,7 @@ var win;
 
 const createWindow = () => {
   win = new BrowserWindow({
-    width: 275,
+    width: 435,
     height: 90,
     frame: false,
     resizable: false,
