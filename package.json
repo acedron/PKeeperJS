@@ -8,10 +8,10 @@
     "start": "npm install && electron .",
     "forcestart": "electron .",
     "postinstall": "electron-builder install-app-deps",
-    "pack": "electron-builder -mwl --dir --x64",
-    "pack32": "electron-builder -mwl --dir --ia32",
-    "dist": "electron-builder -mwl --x64",
-    "dist32": "electron-builder -mwl --ia32"
+    "pack": "electron-builder -wl --dir --x64",
+    "pack32": "electron-builder -wl --dir --ia32",
+    "dist": "electron-builder -wl --x64",
+    "dist32": "electron-builder -wl --ia32"
   },
   "build": {
     "appId": "io.github.acedron.pkeeperjs",
